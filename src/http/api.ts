@@ -4,7 +4,7 @@ import useTokenStore from "@/store";
 const api = axios.create({
   // to do : move this value to env variable
   //baseURL: "https://localhost/elibraryapi",
-  baseURL: "https://localhost:7114",
+  baseURL: "https://localhost/elibraryapi",
   headers: {
     "Content-Type": "application/json",
   },
@@ -22,7 +22,7 @@ api.interceptors.request.use((config) => {
 });
 
 //export const baseFileUrl = "https://squareone.com.ph/elibraryapi/Uploads/";
-export const baseFileUrl = "https://localhost:7114/Uploads/";
+export const baseFileUrl = "https://localhost/elibraryapi/Uploads/";
 
 export const login = async (data: { email: string; password: string }) =>
   api.get(`/user/login/${data.email}/${data.password}`);
@@ -33,23 +33,23 @@ export const register = async (data: {
   password: string;
 }) => api.post("/users/register", data);
 
-export const getBookList = async () => api.get(`/book/list/`);
+export const getBookList = async (status: string) => await api.get(`/book/list/${status}`);
 
-export const getBooks = async (book_id?: string) => api.get(`/book/list/${book_id}`);
+export const getBookbyId = async (book_id: string) => await api.get(`/book/view/${book_id}`); 
 
-export const getBookbyId = async (book_id: string) => api.get(`/book/view/${book_id}`);
+export const getBookCategory = async () => await api.get("/book/list_category");
 
-export const getBookCategory = async () => api.get("/book/list_category");
+export const getBookCategorybyId = async (book_category_id: string) => await api.get(`/book/view_category/${book_category_id}`);
 
-export const getBookCategorybyId = async (book_category_id: string) => api.get(`/book/view_category/${book_category_id}`);
+export const getBookAuthorbyId = async (author_id: string) => await api.get(`/book/view_author/${author_id}`);
 
-export const getBookAuthorbyId = async (author_id: string) => api.get(`/book/view_author/${author_id}`);
+export const getBookAuthors = async () => await api.get("/book/list_authors");
 
-export const getBookAuthors = async () => api.get("/book/list_authors");
+export const getBookClasses = async () => await api.get("/book/list_classes");
 
-export const getBookClasses = async () => api.get("/book/list_classes");
+export const getBookStatus = async () => await api.get("/book/list_status");
 
-export const getBookSubjects = async (class_id: string) => api.get(`/book/list_subjects/${class_id}`);
+export const getBookSubjects = async (class_id: string) => await api.get(`/book/list_subjects/${class_id}`);
 
 export const createBook = async (data: FormData) =>
   

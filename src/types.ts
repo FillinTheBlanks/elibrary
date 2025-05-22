@@ -1,3 +1,4 @@
+import { StringValidation } from "zod";
 
 
 export interface Author {
@@ -31,6 +32,14 @@ export interface Book {
   book_category_name: string;
   author_id: string;
   author_name: string;
+  status: string;
+  class_id: string;
+  subject_id: string;
+  publisher_id: string;
+  quantity: string;
+  isbn: string;
+  price: string;
+  edition: string;
 }
 
 export interface BookCategory {

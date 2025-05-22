@@ -3,7 +3,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useParams } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useEffect } from "react";
-import { createUpdateBookAuthor, getBookCategorybyId } from "@/http/api";
+import { createUpdateBookAuthor, getBookAuthorbyId } from "@/http/api";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
@@ -56,9 +56,9 @@ const CreateUpdateAuthorModal = ({modalShow, modalClose }: IModalProps): JSX.Ele
     
   const { data: bookAuthorData, isLoading: isBookAuthorLoading, isError: isBookAuthorError } = useQuery({
       queryKey: ['book'],
-      queryFn: () => getBookCategorybyId(id!),
+      queryFn: () => getBookAuthorbyId(id!),
       enabled: isUpdate,
-      refetchInterval: 5000,
+      
       networkMode: 'always',
     });
     if (isBookAuthorLoading ) {
@@ -68,7 +68,7 @@ const CreateUpdateAuthorModal = ({modalShow, modalClose }: IModalProps): JSX.Ele
   
     if (isBookAuthorError) {
      
-      return <div>Error loading book category.</div>;
+      return <div>Error loading book author.</div>;
     }
       
   const createUpdateMutation = useMutation({

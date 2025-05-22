@@ -112,6 +112,7 @@ const formSchema = z.object({
   publisher_id: z.string(),
   coverImageUrl: z.string().optional(),
   createdAt: z.string(),
+  timestamp: z.string(),
 });
 
    const { data:BookCategoryList, isLoading: isBookCategoryLoading, isError: isBookCategoryError, refetch:refetchCategory} = useQuery({
@@ -278,36 +279,37 @@ const formSchema = z.object({
     try {
     
     
-    const formdata = new FormData();
-    formdata.append('name', values.name);
-    formdata.append('description', values.description);
-    formdata.append('book_category_id', values.book_category_id);
-    if (values.coverImage?.[0]) {
-      formdata.append('coverImage', values.coverImage[0]);
-    }
-    if (values.file?.[0]) {
-      formdata.append('file', values.file[0]);
-    }
-    formdata.append('book_id', values.book_id);
-    formdata.append('createdBy', values.createdBy);
-    formdata.append('createdAt', values.createdAt);
-    formdata.append('status', values.status);
-    formdata.append('author_id', values.author_id);
-    formdata.append('isbn', values.isbn);
-    formdata.append('price', values.price);
-    formdata.append('edition', values.edition);
-    formdata.append('fileUrl', values.fileUrl || '');
-    formdata.append('class_id', values.class_id);
-    formdata.append('quantity', values.quantity);
-    formdata.append('subject_id', values.subject_id);
-    formdata.append('publisher_id', values.publisher_id);
-    formdata.append('coverImageUrl', values.coverImageUrl || '');
-
-    if (isUpdate) {
-      await updateMutation.mutateAsync(formdata);
-    } else {
-     await createMutation.mutateAsync(formdata);
-    }
+    //const formdata = new FormData();
+    //formdata.append('name', values.name);
+    //formdata.append('description', values.description);
+    //formdata.append('book_category_id', values.book_category_id);
+    //if (values.coverImage?.[0]) {
+    //  formdata.append('coverImage', values.coverImage[0]);
+    //}
+    //if (values.file?.[0]) {
+    //  formdata.append('file', values.file[0]);
+    //}
+    //formdata.append('book_id', values.book_id);
+    //formdata.append('createdBy', values.createdBy);
+    //formdata.append('createdAt', values.createdAt);
+    //formdata.append('timestamp', values.timestamp);
+    //formdata.append('status', values.status);
+    //formdata.append('author_id', values.author_id);
+    //formdata.append('isbn', values.isbn);
+    //formdata.append('price', values.price);
+    //formdata.append('edition', values.edition);
+    //formdata.append('fileUrl', values.fileUrl || '');
+    //formdata.append('class_id', values.class_id);
+    //formdata.append('quantity', values.quantity);
+    //formdata.append('subject_id', values.subject_id);
+    //formdata.append('publisher_id', values.publisher_id);
+    //formdata.append('coverImageUrl', values.coverImageUrl || '');
+//
+    //if (isUpdate) {
+    //  await updateMutation.mutateAsync(formdata);
+    //} else {
+    // await createMutation.mutateAsync(formdata);
+    //}
 
     console.log(values);
   } catch (error) {
@@ -680,7 +682,7 @@ const formSchema = z.object({
                               valueKey="name"
                               labelKey="name"
                               forwardedValue={field.value}
-                              onValueChange={(value) => field.onChange(value) }
+                              onValueChange={(value) => field.onChange(value)}
                             />
                           </FormControl>
                           <FormMessage />
